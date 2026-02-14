@@ -5,13 +5,14 @@
     <strong>Mingshuo Chen</strong><sup>3</sup>, 
     <strong>Yueying Li</strong><sup>1</sup>, 
     <strong>Yajie Yang</strong><sup>4</sup>, 
-    <strong>Yuhao Zhou</strong><sup>5</sup>, 
+    <strong>Yuhao Zhou</strong><sup>5</sup>
+    <br>
     <strong>Di Wang</strong><sup>6,7</sup>, 
     <strong>Yifan Zhang</strong><sup>8</sup>, 
-    <strong>Haoyu Wang</strong><sup>9</sup>
-    <br>
+    <strong>Haoyu Wang</strong><sup>9</sup>, 
     <strong>Haiyan Zhao</strong><sup>9</sup>, 
-    <strong>Hongda Sun</strong><sup>10</sup>, 
+    <strong>Hongda Sun</strong><sup>10</sup>
+    <br>
     <strong>Long Lan</strong><sup>1</sup>, 
     <strong>Jun Song</strong><sup></sup>, 
     <strong>Yulin Wang</strong><sup>9*</sup>, 
