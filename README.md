@@ -5,17 +5,17 @@
     <strong>Mingshuo Chen</strong><sup>3</sup>, 
     <strong>Yueying Li</strong><sup>1</sup>, 
     <strong>Yajie Yang</strong><sup>4</sup>, 
-    <strong>Yuhao Zhou</strong><sup>5</sup>
+    <strong>Yuhao Zhou</strong><sup>5</sup>, 
+    <strong>Di Wang</strong><sup>6</sup>
     <br>
-    <strong>Di Wang</strong><sup>6,7</sup>, 
-    <strong>Yifan Zhang</strong><sup>8</sup>, 
-    <strong>Haoyu Wang</strong><sup>9</sup>, 
-    <strong>Haiyan Zhao</strong><sup>9</sup>, 
-    <strong>Hongda Sun</strong><sup>10</sup>
-    <br>
+    <strong>Yifan Zhang</strong><sup>7</sup>, 
+    <strong>Haoyu Wang</strong><sup>8</sup>, 
+    <strong>Haiyan Zhao</strong><sup>8</sup>, 
+    <strong>Hongda Sun</strong><sup>9</sup>, 
     <strong>Long Lan</strong><sup>1</sup>, 
-    <strong>Jun Song</strong><sup></sup>, 
-    <strong>Yulin Wang</strong><sup>9*</sup>, 
+    <strong>Jun Song</strong><sup></sup>
+    <br>
+    <strong>Yulin Wang</strong><sup>8*</sup>, 
     <strong>Jing Zhang</strong><sup>6*</sup>, 
     <strong>Wenlong Zhang</strong><sup>2*</sup>, 
     <strong>Bo Du</strong><sup>6</sup>
@@ -29,20 +29,17 @@
     <br>
     <sup>5</sup>Sichuan University, 
     <sup>6</sup>Wuhan University, 
-    <sup>7</sup>Zhongguancun Academy, 
-    <sup>8</sup>Chinese Academy of Science
+    <sup>7</sup>Chinese Academy of Science
     <br>
-    <sup>9</sup>Tsinghua University, 
-    <sup>10</sup>Gaoling School of Artificial Intelligence, Renmin University of China
+    <sup>8</sup>Tsinghua University, 
+    <sup>9</sup>Renmin University of China
     </p> 
 </div>
 <div align="center">
-  <a href="https://arxiv.org/abs/2601.00000"><img src="https://img.shields.io/badge/ArXiv-Text_Before_Vision-brown?logo=arxiv" alt="paper"></a> 
+  <a href="https://arxiv.org/abs/2601.00000"><img src="https://img.shields.io/badge/ArXiv-2601.00000-brown?logo=arxiv" alt="paper"></a> 
     <a href="https://huggingface.co/datasets/initiacms/Text-Before-Vision"><img src="https://img.shields.io/badge/🤗%20huggingface-Dataset-blue" alt="dataset"></a> 
     <a href="https://huggingface.co/initiacms/Text-Before-Vision"><img src="https://img.shields.io/badge/🤗%20huggingface-Model-purple" alt="checkpoint"></a>
 </div>
-
-
 
 
 ## 📚 Contents
