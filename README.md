@@ -37,8 +37,8 @@
     </p> 
 </div>
 <div align="center">
-  <a href="https://arxiv.org/abs/2601.00000"><img src="https://img.shields.io/badge/ArXiv-Text_Before_Vision-brown?logo=arxiv" alt="paper"></a> |
-    <a href="https://huggingface.co/datasets/initiacms/Text-Before-Vision"><img src="https://img.shields.io/badge/🤗%20huggingface-Dataset-blue" alt="dataset"></a> |
+  <a href="https://arxiv.org/abs/2601.00000"><img src="https://img.shields.io/badge/ArXiv-Text_Before_Vision-brown?logo=arxiv" alt="paper"></a> 
+    <a href="https://huggingface.co/datasets/initiacms/Text-Before-Vision"><img src="https://img.shields.io/badge/🤗%20huggingface-Dataset-blue" alt="dataset"></a> 
     <a href="https://huggingface.co/initiacms/Text-Before-Vision"><img src="https://img.shields.io/badge/🤗%20huggingface-Model-purple" alt="checkpoint"></a>
 </div>
 
