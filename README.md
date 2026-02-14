@@ -1,10 +1,48 @@
 <div align="center">
-  <h2><strong>Text Before Vision: Staged Knowledge Injection Matters for Agentic RLVR in UHR Remote Sensing</strong></h2>
-  <h5>
-  Anonymous Authors
-      <br/><br/>
-  </h5>
+  <h1><strong>Text Before Vision: Staged Knowledge Injection Matters for Agentic RLVR in UHR Remote Sensing</strong></h1>
+  <p>
+    <strong>Fengxiang Wang</strong><sup>1,2</sup>, 
+    <strong>Mingshuo Chen</strong><sup>3</sup>, 
+    <strong>Yueying Li</strong><sup>1</sup>, 
+    <strong>Yajie Yang</strong><sup>4</sup>, 
+    <strong>Yuhao Zhou</strong><sup>5</sup>, 
+    <strong>Di Wang</strong><sup>6,7</sup>, 
+    <strong>Yifan Zhang</strong><sup>8</sup>, 
+    <strong>Haoyu Wang</strong><sup>9</sup>
+    <br>
+    <strong>Haiyan Zhao</strong><sup>9</sup>, 
+    <strong>Hongda Sun</strong><sup>10</sup>, 
+    <strong>Long Lan</strong><sup>1</sup>, 
+    <strong>Jun Song</strong><sup></sup>, 
+    <strong>Yulin Wang</strong><sup>9*</sup>, 
+    <strong>Jing Zhang</strong><sup>6*</sup>, 
+    <strong>Wenlong Zhang</strong><sup>2*</sup>, 
+    <strong>Bo Du</strong><sup>6</sup>
+  </p>
+  <p>
+    <sup>1</sup>National University of Defense Technology, 
+    <sup>2</sup>Shanghai AI Laboratory
+    <br>
+    <sup>3</sup>Beijing University of Posts and Telecommunications, 
+    <sup>4</sup>University of the Chinese Academy of Sciences
+    <br>
+    <sup>5</sup>Sichuan University, 
+    <sup>6</sup>Wuhan University, 
+    <sup>7</sup>Zhongguancun Academy, 
+    <sup>8</sup>Chinese Academy of Science
+    <br>
+    <sup>9</sup>Tsinghua University, 
+    <sup>10</sup>Gaoling School of Artificial Intelligence, Renmin University of China
+    </p> 
 </div>
+<div align="center">
+  <a href="https://arxiv.org/abs/2601.00000"><img src="https://img.shields.io/badge/ArXiv-Text_Before_Vision-brown?logo=arxiv" alt="paper"></a> |
+    <a href="https://huggingface.co/datasets/initiacms/Text-Before-Vision"><img src="https://img.shields.io/badge/🤗%20huggingface-Dataset-blue" alt="dataset"></a> |
+    <a href="https://huggingface.co/initiacms/Text-Before-Vision"><img src="https://img.shields.io/badge/🤗%20huggingface-Model-purple" alt="checkpoint"></a>
+</div>
+
+
+
 
 ## 📚 Contents
 
@@ -13,6 +51,7 @@
 - [🌐Earth-Science Text QA Dataset](#earth-science-text-qa-dataset)
 - [🛠️Methodology & Training](#methodology--training)
 - [🚀Evaluation](#evaluation)
+- [🤝Acknowledgement](#acknowledgement)
 
 ## 🔍Overview
 
@@ -54,25 +93,26 @@ Our approach (Agentic RLVR) utilizes **Qwen2.5-VL** as the base model and integr
 
 ### 1. Prepare Data
 
-* **Earth-Science Text QA**: Download our constructed dataset. 
-* **SuperRS-VQA**: Ensure you have the SuperRS-VQA images for the visual warm-up stage.
-* **General RL Data**: We utilize DeepEyes-47K for general reasoning stability.
-
-**Anonymous Dataset URL**: https://huggingface.co/datasets/Anonymous-WR3Jazmla4/Text-Before-Vision
+* **Earth-Science Text QA**: Download our constructed dataset through [huggingface](https://huggingface.co/datasets/initiacms/Text-Before-Vision). 
+* **SuperRS-VQA**: Ensure you have the [SuperRS-VQA](https://huggingface.co/datasets/initiacms/GeoLLaVA-Data) images for the SFT.
+* **General RL Data**: We utilize [DeepEyes-47K](https://huggingface.co/datasets/ChenShawn/DeepEyes-Datasets-47k) for general reasoning stability.
 
 ### 2. Training Stages
 
-We recommend a staged training process to maximize Pass@1 and Pass@32 performance. Please check the `train` folder first.
+We used a staged training process for Text-Before-Vision. Please check the `training` folder first.
 
 #### Stage 1: Cold-Start SFT
 We utilize LLaMA-Factory to perform SFT.
 
 ```bash
-# please first install llamafactory, following
-# https://github.com/hiyouga/LlamaFactory/tree/2a822178dea4d1c05f595521dd883a8e4f4e2e77
-# download our data, modify dataset_info.json and file paths in yaml file
-llamafactory-cli train yamls/base.yaml
+# 1. Download and prepare sft data from huggingface
+# please make sure to modify the absolute image paths in SuperRS-VQA
+# two json files are required here: geollava_superrs.json for SuperRS-VQA, text_148k_sft.json for text knowledge injection.
+# 2. SFT using llamafactory
+# We use this specific commit: https://github.com/hiyouga/LlamaFactory/tree/2a822178dea4d1c05f595521dd883a8e4f4e2e77
 # if encountered TypeError duiring dataset preprocess, refer to https://github.com/hiyouga/LlamaFactory/issues/5613
+# modify json paths in dataset_info.json and yaml file
+llamafactory-cli train yamls/base.yaml
 ```
 
 #### Stage 2: Agentic RLVR (with Tools)
@@ -80,10 +120,11 @@ llamafactory-cli train yamls/base.yaml
 Perform Group Relative Policy Optimization (GRPO) with zoom-in tools enabled. Here we utilize DeepEyes as the specific training framework.
 
 ```bash
-# please first install DeepEyes, following
-# https://github.com/Visual-Agent/DeepEyes
-# download RL data, and modify parquet file paths in the training script
-# follow deepeyes to set LLM judge and start training
+# 1. first install DeepEyes through https://github.com/Visual-Agent/DeepEyes
+# 2. download RL data, and modify parquet file paths in the training script
+# there are 3 parquets from DeepEyes-47k and 1 parquet file from our HF repo
+# 3. modify verl/utils/reward_score/__init__.py according to our provided __init__.py
+# 4. follow deepeyes to set LLM judge and start training through:
 bash train_rq_general.sh
 ```
 
@@ -91,30 +132,33 @@ bash train_rq_general.sh
 
 We evaluate primarily on **XLRS-Bench** to measure both average performance (Pass@1) and reasoning boundary (Pass@32).
 
-### Evaluation
+### Evaluation Steps
 
-To replicate the results in Table 1 and Figure 4 of the paper:
+To replicate the results in our paper:
 
 ```bash
-# frist prepare data using the provided notebook
-# convert model from pt format to hf model
+# 0. execute the prepare_xlrs_data.ipynb to preprocess the evaluation data
+# 1. convert model from pt format to hf model
 bash s1.sh
-# deploy model using vllm (or ray using `serve run ray.yaml`)
+# 2. deploy model using vllm (or ray using `serve run ray.yaml`)
 bash s21.sh
-# prompting vllm, this may take 1~2 days considering different GPU types
+# 3. prompting vllm, this may take 1~2 days for pass@32 evaluation
 bash s22.sh
-# calculate metrics
+# 4. calculate metrics
 bash s232.sh
-
 ```
 
 ### Expected Results
 
-We also provide our trained model checkpoints through **anonymous** repo: https://huggingface.co/Anonymous-WR3Jazmla4/Text-Before-Vision
+We also provide our trained model checkpoints [here](https://huggingface.co/initiacms/Text-Before-Vision).
 
 | Method | Pass@1 | Pass@32 |
 | --- | --- | --- |
 | Baseline (RLVR) | 50.01 | 82.58 |
 | + Pre-warming (SuperRS-VQA) | 52.39 | 91.85 |
 | **+ Text Cold Start (Ours)** | **60.40** | **96.25** |
+
+# 🤝Acknowledgement
+
+This repo benefits from [DeepEyes](https://github.com/Visual-Agent/DeepEyes) and [LLaMA-Factory](https://github.com/hiyouga/LlamaFactory). Thanks for their wonderful works.
 

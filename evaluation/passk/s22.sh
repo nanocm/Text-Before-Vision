@@ -8,7 +8,7 @@ python eval_multi_xlrsbench2.py \
     --model_name ${EXP_NAME}_step_${STEP} \
     --api_key None \
     --api_url http://${IP}:${PORT}/v1 \
-    --xlrsbench_path ~/sci/chenmingshuo/converted_data \
+    --xlrsbench_path /path/to/converted_xlrs_data \
     --save_path results/${EXP_NAME}_step_${STEP} \
     --eval_model_name ${EXP_NAME}_step_${STEP} \
     --num_workers 48 --k 32
